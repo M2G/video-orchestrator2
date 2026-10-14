@@ -17,4 +17,11 @@ class RetryPolicyTest {
         assertTrue(d2 > d1);
         assertTrue(d3 > d2);
     }
+
+    @Test
+    void shouldCapDelay() {
+        RetryPolicy policy = new RetryPolicy();
+        int delay = policy.nextDelaySeconds(10);
+        assertTrue(delay >= 300 && delay <= 304);
+    }
 }
