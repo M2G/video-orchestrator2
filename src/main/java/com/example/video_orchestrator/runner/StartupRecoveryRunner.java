@@ -1,20 +1,18 @@
 package com.example.video_orchestrator.runner;
 
-import com.example.video_orchestrator.repository.SqlcVideoJobRepository;
+import com.example.video_orchestrator.repository.VideoJobRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StartupRecoveryRunner implements CommandLineRunner {
 
-    private final SqlcVideoJobRepository repository;
+    private final VideoJobRepository repository;
 
-    // Repository DB
-    public StartupRecoveryRunner(SqlcVideoJobRepository repository) {
+    public StartupRecoveryRunner(VideoJobRepository repository) {
         this.repository = repository;
     }
 
-    // Nettoie les jobs bloqués au démarrage
     @Override
     public void run(String... args) {
         repository.resetStuckJobs();
